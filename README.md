@@ -6,6 +6,10 @@ Cucumber extension for [coc.nvim](https://github.com/neoclide/coc.nvim)
 
 <img width="780" alt="coc-cucumber-demo" src="https://user-images.githubusercontent.com/188642/156540810-1b3a47d4-6cfd-4dbc-852b-5849d0bcfcc0.png" />
 
+## !! Note & Warning !!
+
+I don't use `cucumber` regularly, so if you like cucumber, please refer or copy to this repository and create coc-cucumber by yourself.
+
 ## Install
 
 **vim-plug**:

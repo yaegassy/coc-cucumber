@@ -1,0 +1,84 @@
+{
+  "name": "coc-cucumber",
+  "version": "0.0.1",
+  "description": "Cucumber extension for coc.nvim",
+  "author": "yaegassy <yosstools@gmail.com>",
+  "license": "MIT",
+  "main": "lib/index.js",
+  "keywords": [
+    "coc.nvim",
+    "vim",
+    "neovim",
+    "Cucumber",
+    "Gherkin",
+    "Feature"
+  ],
+  "engines": {
+    "coc": "^0.0.80"
+  },
+  "scripts": {
+    "lint": "eslint src --ext ts",
+    "clean": "rimraf lib out",
+    "watch": "node esbuild.js --watch",
+    "build": "node esbuild.js",
+    "prepare": "npm-run-all clean copy-wasm build",
+    "copy-wasm": "mkdir -p lib && cp node_modules/@cucumber/language-service/*.wasm lib && cp node_modules/web-tree-sitter/*.wasm lib"
+  },
+  "prettier": {
+    "singleQuote": true,
+    "printWidth": 120,
+    "semi": true
+  },
+  "devDependencies": {
+    "@types/node": "^16.11.26",
+    "@typescript-eslint/eslint-plugin": "^5.13.0",
+    "@typescript-eslint/parser": "^5.13.0",
+    "coc.nvim": "^0.0.81-next.21",
+    "esbuild": "^0.14.23",
+    "eslint": "^8.10.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.5.1",
+    "rimraf": "^3.0.2",
+    "typescript": "~4.5.5"
+  },
+  "activationEvents": [
+    "onLanguage:cucumber",
+    "onLanguage:gherkin"
+  ],
+  "contributes": {
+    "configuration": {
+      "type": "object",
+      "title": "coc-cucumber configuration",
+      "properties": {
+        "cucumber.enable": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable coc-cucumber extension"
+        },
+        "cucumber.features": {
+          "type": [
+            "array"
+          ],
+          "description": "Globs to locate feature files"
+        },
+        "cucumber.glue": {
+          "description": "Globs to locate glue code aka step definitions and hooks",
+          "type": [
+            "array"
+          ]
+        },
+        "cucumber.parameterTypes": {
+          "type": [
+            "array"
+          ],
+          "markdownDescription": "The parameterTypes setting can be used to define [Custom Parameter Types](https://github.com/cucumber/cucumber-expressions#custom-parameter-types) that are not directly visible in the source code.\n\nFor example, if you're using the actor parameter type from [@cucumber/screenplay](https://github.com/cucumber/screenplay.js#actors) you'll have to declare this in the parameterTypes setting:\n\n```json\n{\n  \"cucumber.parameterTypes\": [\n    { \"name\": \"actor\", \"regexp\": \"[A-Z][a-z]+\" }\n  ]\n}\n```"
+        }
+      }
+    }
+  },
+  "dependencies": {
+    "@cucumber/language-server": "^0.5.1"
+  }
+}
